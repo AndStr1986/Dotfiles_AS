@@ -1,0 +1,9 @@
+[user]
+  name = Anders
+  email = as@solarnorge.no
+
+[init]
+  defaultBranch = main
+
+[pull]
+  rebase = false
