@@ -1,0 +1,8 @@
+brew "git"
+brew "neovim"
+brew "ripgrep"
+brew "fd"
+brew "tmux"
+brew "stow"
+brew "fzf"
+brew "tree"
