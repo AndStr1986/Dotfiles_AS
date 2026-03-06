@@ -26,6 +26,9 @@ eval "$(starship init zsh)"
 # Enable Zoxide
 eval "$(zoxide init zsh)"
 
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 # eza (modern ls)
 alias ls="eza"
 alias ll="eza -lah"

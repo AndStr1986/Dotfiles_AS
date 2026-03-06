@@ -13,3 +13,9 @@ cd ~/Dotfiles_AS
 
 ## Install packages
 brew bundle --file=~/Dotfiles_AS/Brewfile
+
+## FZF keybind
+$(brew --prefix)/opt/fzf/install
+
+# add to zsh/.zshrc
+
