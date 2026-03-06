@@ -2,9 +2,16 @@
 
 echo "Installing Dotfiles...."
 
-ln -sf ~/Dotfiles_AS/zshrc ~/.zshrc
-ln -sf ~/Dotfiles_AS/gitconfig ~/.gitconfig
+cd ~/Dotfiles_AS
 
-mkdir -p ~/.ssh
+# Install brew packages
+brew bundle --file=Brewfile
+
+# install configs
+stow git
+stow zsh
+stow ssh
+stow nvim
+stow starship
 
 echo "Done."
