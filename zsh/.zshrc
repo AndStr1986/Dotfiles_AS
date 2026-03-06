@@ -28,3 +28,6 @@ alias ls="eza"
 alias ll="eza -lah"
 alias la="eza -a"
 alias tree="eza --tree --level=2"
+
+# bat (Better cat)
+alias cat="bat"
