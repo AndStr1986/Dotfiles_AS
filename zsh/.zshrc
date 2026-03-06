@@ -37,3 +37,6 @@ alias tree="eza --tree --level=2"
 
 # bat (Better cat)
 alias cat="bat"
+
+# ripgrep
+alias grep="rg"
