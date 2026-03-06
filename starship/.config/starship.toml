@@ -1,0 +1,27 @@
+add_newline = false
+
+format = """
+$directory\
+$git_branch\
+$git_status\
+$nodejs\
+$python\
+$rust\
+$golang\
+$cmd_duration\
+$line_break\
+$character
+"""
+
+[directory]
+style = "blue"
+
+[git_branch]
+symbol = "🌱 "
+
+[git_status]
+style = "red"
+
+[character]
+success_symbol = "[❯](green)"
+error_symbol = "[❯](red)"

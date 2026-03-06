@@ -15,3 +15,10 @@ alias gl="git pull"
 # navigation
 alias ..="cd .."
 alias ...="cd ../.."
+
+#nvim
+alias v="nvim"
+alias vim="nvim"
+
+# Enable Starship
+eval "$(starship init zsh)"
