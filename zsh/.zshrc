@@ -23,6 +23,9 @@ alias vim="nvim"
 # Enable Starship
 eval "$(starship init zsh)"
 
+# Enable Zoxide
+eval "$(zoxide init zsh)"
+
 # eza (modern ls)
 alias ls="eza"
 alias ll="eza -lah"
