@@ -22,3 +22,9 @@ alias vim="nvim"
 
 # Enable Starship
 eval "$(starship init zsh)"
+
+# eza (modern ls)
+alias ls="eza"
+alias ll="eza -lah"
+alias la="eza -a"
+alias tree="eza --tree --level=2"
