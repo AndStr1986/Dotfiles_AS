@@ -40,3 +40,9 @@ alias cat="bat"
 
 # ripgrep
 alias grep="rg"
+
+# Tmux
+alias t="tmux"
+
+# Python
+alias py="python3"

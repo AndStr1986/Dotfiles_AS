@@ -11,3 +11,6 @@ brew "zoxide"
 brew "fzf"
 brew "ripgrep"
 brew "tree-sitter"
+
+cask "ghostty"
+cask "font-jetbrains-mono-nerd-font"
