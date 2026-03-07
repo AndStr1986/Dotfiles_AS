@@ -14,3 +14,4 @@ brew "tree-sitter"
 
 cask "ghostty"
 cask "font-jetbrains-mono-nerd-font"
+cask "nikitabobko/tap/aerospace"

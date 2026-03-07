@@ -13,5 +13,6 @@ stow zsh
 stow ssh
 stow nvim
 stow starship
+stow aerospace
 
 echo "Done."
