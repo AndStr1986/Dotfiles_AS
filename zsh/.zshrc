@@ -1,19 +1,35 @@
 # editor
 export EDITOR=nvim
 
-export FZF_DEFAULT_OPTS="--highlight-line --info=inline-right --ansi --layout=reverse --border=none"
+export FZF_DEFAULT_OPTS="
+  --highlight-line
+  --info=inline-right
+  --ansi
+  --layout=reverse
+  --border=rounded
+  --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8
+  --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc
+  --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8
+  --color=selected-bg:#45475a
+"
 
-autoload -U compinit; compinit
+autoload -U compinit
+compinit
 source ~/Dotfiles_AS/zsh/plugins/fzf-tab/fzf-tab.plugin.zsh
 
-
-# preview directory's content with eza when completing cd
+# preview directory contents with eza when completing cd
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
-zstyle ':fzf-tab:*' fzf-flags --color=fg:1,fg+:2 --bind=tab:accept
-# To make fzf-tab follow FZF_DEFAULT_OPTS.
-# NOTE: This may lead to unexpected behavior since some flags break this plugin. See Aloxaf/fzf-tab#455.
-zstyle ':fzf-tab:*' use-fzf-default-opts yes
-# switch group using `<` and `>`
+
+zstyle ':fzf-tab:*' fzf-flags \
+  --bind=tab:accept \
+  --border=rounded \
+  --layout=reverse \
+  --info=inline-right \
+  --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+  --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+  --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
+  --color=selected-bg:#45475a
+
 zstyle ':fzf-tab:*' switch-group '<' '>'
 
 # history
