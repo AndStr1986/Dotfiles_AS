@@ -1,57 +1,159 @@
+# ~/.aerospace.toml
+
 config-version = 2
+
+after-startup-command = []
+after-login-command  = []
+
 start-at-login = true
 
-accordion-padding = 30
-default-root-container-layout = "tiles"
-default-root-container-orientation = "auto"
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
+
+accordion-padding = 10
+
+default-root-container-layout = 'tiles'
+default-root-container-orientation = 'auto'
+
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+
+automatically-unhide-macos-hidden-apps = false
+
+exec-on-workspace-change = [
+  '/bin/bash',
+  '-c',
+  'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE PREV_WORKSPACE=$AEROSPACE_PREV_WORKSPACE',
+]
+
+[key-mapping]
+preset = 'qwerty'
 
 [gaps]
 inner.horizontal = 8
-inner.vertical = 8
-outer.left = 8
-outer.bottom = 8
-outer.top = 8
-outer.right = 8
+inner.vertical   = 8
+outer.left       = 8
+outer.bottom     = 8
+outer.top        = [{ monitor.".*Built-in.*" = 8 }, 28]
+outer.right      = 8
+
+# ── Main mode ────────────────────────────────────────────────────────────────
 
 [mode.main.binding]
-alt-slash = "layout tiles horizontal vertical"
-alt-comma = "layout accordion horizontal vertical"
 
-alt-h = "focus left"
-alt-j = "focus down"
-alt-k = "focus up"
-alt-l = "focus right"
+# Focus
+shift-alt-h = 'focus left'
+shift-alt-j = 'focus down'
+shift-alt-k = 'focus up'
+shift-alt-l = 'focus right'
 
-alt-shift-h = "move left"
-alt-shift-j = "move down"
-alt-shift-k = "move up"
-alt-shift-l = "move right"
+# Focus monitor
+cmd-alt-h = 'focus-monitor left'
+cmd-alt-j = 'focus-monitor down'
+cmd-alt-k = 'focus-monitor up'
+cmd-alt-l = 'focus-monitor right'
 
-alt-1 = "workspace 1"
-alt-2 = "workspace 2"
-alt-3 = "workspace 3"
-alt-4 = "workspace 4"
+# Workspace navigation
+cmd-l = 'workspace next'
+cmd-h = 'workspace prev'
 
-alt-shift-1 = "move-node-to-workspace 1"
-alt-shift-2 = "move-node-to-workspace 2"
-alt-shift-3 = "move-node-to-workspace 3"
-alt-shift-4 = "move-node-to-workspace 4"
+# Switch workspace
+alt-1 = 'workspace 1'
+alt-2 = 'workspace 2'
+alt-3 = 'workspace 3'
+alt-4 = 'workspace 4'
+alt-5 = 'workspace 5'
+alt-6 = 'workspace 6'
+alt-7 = 'workspace 7'
+alt-8 = 'workspace 8'
+alt-9 = 'workspace 9'
 
-alt-tab = "workspace-back-and-forth"
-alt-shift-tab = "move-workspace-to-monitor --wrap-around next"
+# Move window within workspace  (was duplicated — ctrl-shift-alt removed)
+ctrl-alt-h = 'move left'
+ctrl-alt-j = 'move down'
+ctrl-alt-k = 'move up'
+ctrl-alt-l = 'move right'
 
-alt-enter = "exec-and-forget open -na Ghostty"
-alt-f = "fullscreen"
-alt-shift-space = "layout floating tiling"
+# Layout toggles  (shift-alt-r and shift-alt-y were identical — r now rotates)
+shift-alt-r = 'layout horizontal vertical'        # rotate/toggle orientation
+shift-alt-y = 'layout tiles horizontal vertical'  # tiles + toggle orientation
+shift-alt-x = 'layout tiles vertical horizontal'
+shift-alt-t = 'layout floating tiling'
+shift-alt-m = 'fullscreen'
+shift-alt-e = 'flatten-workspace-tree'
 
-alt-r = "mode resize"
+alt-slash  = 'layout tiles horizontal vertical'
+alt-comma  = 'layout accordion horizontal vertical'
+
+# Move node to monitor + follow
+shift-alt-s = ['move-node-to-monitor left',  'focus-monitor left']
+shift-alt-g = ['move-node-to-monitor right', 'focus-monitor right']
+
+# Move node to workspace (and follow)
+shift-alt-p = ['move-node-to-workspace prev', 'workspace prev']
+shift-alt-n = ['move-node-to-workspace next', 'workspace next']
+
+shift-alt-1 = ['move-node-to-workspace 1', 'workspace 1']
+shift-alt-2 = ['move-node-to-workspace 2', 'workspace 2']
+shift-alt-3 = ['move-node-to-workspace 3', 'workspace 3']
+shift-alt-4 = ['move-node-to-workspace 4', 'workspace 4']
+shift-alt-5 = ['move-node-to-workspace 5', 'workspace 5']
+shift-alt-6 = ['move-node-to-workspace 6', 'workspace 6']
+shift-alt-7 = ['move-node-to-workspace 7', 'workspace 7']
+shift-alt-8 = ['move-node-to-workspace 8', 'workspace 8']
+shift-alt-9 = ['move-node-to-workspace 9', 'workspace 9']
+
+# Modes
+alt-r               = 'mode resize'
+alt-shift-semicolon = 'mode service'
+
+# ── Resize mode ───────────────────────────────────────────────────────────────
 
 [mode.resize.binding]
-h = "resize smart -50"
-l = "resize smart +50"
-j = "resize smart +50"
-k = "resize smart -50"
+h     = 'resize smart -50'
+j     = 'resize smart +50'
+k     = 'resize smart -50'
+l     = 'resize smart +50'
+enter = 'mode main'
+esc   = 'mode main'
 
-enter = "mode main"
-esc = "mode main"
+# ── Service mode ──────────────────────────────────────────────────────────────
+
+[mode.service.binding]
+esc       = ['reload-config', 'mode main']
+r         = ['flatten-workspace-tree', 'mode main']
+f         = ['layout floating tiling', 'mode main']
+backspace = ['close-all-windows-but-current', 'mode main']
+shift-h   = ['join-with left',  'mode main']
+shift-j   = ['join-with down',  'mode main']
+shift-k   = ['join-with up',    'mode main']
+shift-l   = ['join-with right', 'mode main']
+
+# ── Window rules ─────────────────────────────────────────────────────────────
+
+[[on-window-detected]]
+if.app-id = 'com.apple.systempreferences'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.ActivityMonitor'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.Calculator'
+run = 'layout floating'
+
+# (Vivaldi rule removed — tiling is default, rule was a no-op)
+
+# ── Monitor assignments ───────────────────────────────────────────────────────
+
+[workspace-to-monitor-force-assignment]
+1 = '.*Built-in.*'
+2 = '.*Built-in.*'
+3 = '.*Built-in.*'
+4 = '.*Sidecar.*'
+5 = '.*Sidecar.*'
+6 = '.*Sidecar.*'
+7 = 'EK220Q E3'
+8 = 'EK220Q E3'
+9 = 'EK220Q E3'
 

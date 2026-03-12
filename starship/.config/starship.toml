@@ -1,13 +1,35 @@
 add_newline = false
 # A minimal left prompt
-format = """$directory$character"""
+format = """
+[](maroon)\
+$os\
+[ ](maroon)\
+$directory\
+$git_branch\
+$git_status\
+$line_break\
+$character
+"""
 palette = "catppuccin_mocha"
 # move the rest of the prompt to the right
-right_format = """$all"""
+right_format = """
+$python\
+$lua\
+$jobs\
+$cmd_duration\
+$all\
+"""
 command_timeout = 1000
 
+[python]
+style = 'teal'
+symbol = ' '
+format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+pyenv_version_name = true
+pyenv_prefix = ''
+
 [character]
-vicmd_symbol = "[N] >>>"
+vicmd_symbol = '[N] >>>'
 success_symbol = '[➜](bold green)'
 
 [directory.substitutions]
@@ -36,6 +58,32 @@ contexts = [
 
 [docker_context]
 disabled = true
+
+[os]
+disabled = false
+style = "bg:maroon fg:crust"
+
+[os.symbols]
+Windows = ""
+Ubuntu = "󰕈"
+SUSE = ""
+Raspbian = "󰐿"
+Mint = "󰣭"
+Macos = "󰀵"
+Manjaro = ""
+Linux = "󰌽"
+Gentoo = "󰣨"
+Fedora = "󰣛"
+Alpine = ""
+Amazon = ""
+Android = ""
+AOSC = ""
+Arch = "󰣇"
+Artix = "󰣇"
+CentOS = ""
+Debian = "󰣚"
+Redhat = "󱄛"
+RedHatEnterprise = "󱄛"
 
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"
